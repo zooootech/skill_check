@@ -88,3 +88,54 @@ while true
 end
 
 puts "#{count} #{start_date}"
+
+# -------------------------------------------------
+
+# 全日分とキャンペーン期間の取得
+all_days_part, campaign_period = gets.chomp.split(" ").map(&:to_f)
+
+# 二行目の全日分の訪問者数を取得する
+visitor_numbers = gets.chomp.split(" ").map(&:to_i)
+
+#キャンペーンを行った期間の候補をいれるための空配列の作成
+campaign_candidates = []
+
+# 全日分の訪問者数をキャンペーン期間でループさせ、取得した値を空配列にいれる
+visitor_numbers.each_cons(campaign_period).map{|candidate|campaign_candidates << candidate.sum}
+
+#  キャンペーンの各区間の平均値
+averages = []
+
+campaign_candidates.each do |average| 
+  averages << (average / campaign_period) 
+end 
+
+# キャンペーンの期間での最大値を求める
+ans_max = 0 
+averages.each do |i|
+  if ans_max < i
+    ans_max = i
+  end
+end 
+
+# キャンペーン期間候補の最初に出てくる日を探す
+ans_first_max = 0
+averages.each do |i|
+  if i == ans_max
+    break
+  else 
+    ans_first_max += 1
+  end   
+end
+
+# 最大値と同じ値の個数を求める
+ans_count = 0
+averages.each do |i|
+  if ans_max == i 
+    ans_count += 1
+  end 
+end 
+
+#キャンペーンを行った期間の候補数と、候補の中で最も早い開始日
+
+puts "#{ans_count} #{ans_first_max + 1}" 
