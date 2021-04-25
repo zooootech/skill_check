@@ -45,3 +45,6 @@
 
 f_1, f_2 = gets.chomp.split.map(&:to_i)
 
+f_3 = (f_1 - f_2).abs
+
+puts f_3
