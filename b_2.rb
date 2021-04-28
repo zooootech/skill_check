@@ -78,12 +78,12 @@ while true
     count = 1
     start_date = i + 1
   
-  # ある期間の候補者数の最大平均値が、その時点での最大平均値と等しければ、count を 1 プラスする
+  # ある期間の候補者数の平均値が、その時点での最大平均値と等しければ、count を 1 プラスする
   elsif max_average == (k_sum / k)
     count += 1
   end
 
-  # 配列から切り取る要素をずらすため、i に 1 をプラスする
+  # 配列から切り取る要素を右にずらすため、i に 1 をプラスする
   i += 1
 end
 
@@ -101,7 +101,8 @@ visitor_numbers = gets.chomp.split(" ").map(&:to_i)
 campaign_candidates = []
 
 # 全日分の訪問者数をキャンペーン期間でループさせ、取得した値を空配列にいれる
-visitor_numbers.each_cons(campaign_period).map{|candidate|campaign_candidates << candidate.sum}
+# each_cons(n)は、selfの中から連続する n 個の要素を 1 つずつずらしながら取得できる
+visitor_numbers.each_cons(campaign_period).map { |candidate| campaign_candidates << candidate.sum }
 
 #  キャンペーンの各区間の平均値
 averages = []
