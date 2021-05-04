@@ -105,3 +105,27 @@ array.each do |word|
     puts "#{word}" + "s"
   end
 end
+
+# -------------------------------------------------
+
+n = gets.to_i
+
+array = []
+
+for i in 1..n
+  array << gets.chomp
+end
+
+array.each do |word|
+  if (word.slice(-1) == "s") || (word.slice(-2, 2) == "sh") || (word.slice(-2, 2) == "ch") || (word.slice(-1) == "o") || (word.slice(-1) == "x")
+    puts "#{word}" + "es"
+  elsif word.slice(-1) == "f"
+    puts "#{word.slice(0, (word.length - 1))}" + "ves"
+  elsif word.slice(-2, 2) == "fe"
+    puts "#{word.slice(0, (word.length - 2))}" + "ves"
+  elsif (word.slice(-1) == "y") && ((word.slice(-2) != "a") && (word.slice(-2) != "i") && (word.slice(-2) != "u") && (word.slice(-2) != "e") && (word.slice(-2) != "o"))
+    puts "#{word.slice(0, (word.length - 1))}" + "ies"
+  else
+    puts "#{word}" + "s"
+  end
+end
