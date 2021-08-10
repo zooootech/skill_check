@@ -8,4 +8,11 @@ $m = fgets(STDIN);
 
 echo $n % $m;
 
+// -------------------------------------------------
+
+$n = trim(fgets(STDIN));
+$m = trim(fgets(STDIN));
+
+print $n % $m;
+
 ?>
